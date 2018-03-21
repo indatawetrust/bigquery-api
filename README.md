@@ -17,12 +17,12 @@ bigqueryapi({
   tables: [{
     name: 'user',
     options: {
-      schema: 'name:string, date:date'
+      schema: 'name:string, date:datetime'
     }
   },{
     name: 'post',
     options: {
-      schema: 'text:string, date:date'
+      schema: 'text:string, date:datetime'
     }
   }]
 })
