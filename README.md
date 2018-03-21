@@ -27,12 +27,12 @@ bigqueryapi({
   }]
 })
 .then(async ({ bigquery, table }) => {
-   
+
   // insert
   await table.user.insert({ name: "ahmet şimşek", date: "2018-04-01T12:34:56" })
-  
+
   await table.post.insert({ text: "lorem ipsum", date: "2018-04-01T12:34:52" })
-  
+
   // query
   await bigquery.query({ query: 'SELECT * FROM myproject.user' })
 

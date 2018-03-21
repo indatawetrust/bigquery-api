@@ -1,11 +1,13 @@
 const BigQuery = require('@google-cloud/bigquery');
 const to = require('await-to-js').default;
 
-const getTables = async ({ bigquery, datasetId, tables, _tables }) => {
+const getTables = async ({ bigquery, datasetId, tables = [], _tables = [] }) => {
 
   let err;
 
   const dataset = bigquery.dataset(datasetId);
+
+  tables = [...tables, ..._tables.map(({id}) => ({ name: id }))];
 
   [err, tables] = await to(Promise.all(tables.map(async table => {
     if (_tables.filter(({id}) => id == table.name).length) {
