@@ -17,7 +17,7 @@ const getTables = async ({ bigquery, datasetId, tables, _tables }) => {
       [err] = await to(dataset.createTable(table.name, table.options));
 
       if (err) {
-        return Promise.reject(new Error(`table could not be created.`));
+        return Promise.reject(new Error(err));
       }
 
       return await Promise.resolve({
@@ -57,7 +57,7 @@ const main = async (opts) => {
   [err, datasets] = await to(bigquery.getDatasets());
 
   if (err) {
-    return await Promise.reject(new Error(`datasets could not be retrieved.`));
+    return await Promise.reject(new Error(err));
   }
 
   datasets = datasets[0];
@@ -70,14 +70,14 @@ const main = async (opts) => {
 
     if (!tables && !_tables.length) {
 
-      return await Promise.resolve({});
+      return await Promise.resolve({ bigquery });
 
     } else {
 
       [err, tables] = await to(getTables({ bigquery: bigquery, datasetId: datasetId, tables, _tables }));
 
       if (err) {
-        return await Promise.reject(new Error(`tables could not be retrieved.`));
+        return await Promise.reject(new Error(err));
       }
 
       return await Promise.resolve(tables);
@@ -89,13 +89,13 @@ const main = async (opts) => {
     [err] = await to(bigquery.createDataset(datasetId));
 
     if (err) {
-      return await Promise.reject(new Error(`dataset could not be created.`));
+      return await Promise.reject(new Error(err));
     }
 
     [err, tables] = await to(getTables({ bigquery: bigquery, datasetId: datasetId, tables, _tables }));
 
     if (err) {
-      return await Promise.reject(new Error(`the tables could not be retrieved.`));
+      return await Promise.reject(new Error(err));
     }
 
     return await Promise.resolve(tables);
