@@ -70,7 +70,7 @@ const main = async (opts) => {
 
     if (!tables && !_tables.length) {
 
-      return await Promise.resolve({ bigquery });
+      return await Promise.resolve({ bigquery, table: { } });
 
     } else {
 
