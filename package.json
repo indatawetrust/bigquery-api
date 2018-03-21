@@ -1,0 +1,15 @@
+{
+  "name": "bigquery-api",
+  "version": "0.0.1",
+  "description": "A quick and easy to use package for Google Cloud BigQuery.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "indatawetrust",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/bigquery": "^1.0.0",
+    "await-to-js": "^2.0.1"
+  }
+}
