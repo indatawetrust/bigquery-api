@@ -30,6 +30,10 @@ const getTables = async ({ bigquery, datasetId, tables = [], _tables = [] }) => 
 
   })));
 
+  if (err) {
+    return await Promise.reject(new Error(err));
+  }
+
   return await Promise.resolve({
     bigquery,
     table: tables.reduce((prev, next) => Object.assign(prev, next))
