@@ -1,6 +1,6 @@
 {
   "name": "bigquery-api",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A quick and easy to use package for Google Cloud BigQuery.",
   "main": "index.js",
   "scripts": {
@@ -12,10 +12,14 @@
     "google cloud",
     "api"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indatawetrust/bigquery-api.git"
+  },
   "author": "indatawetrust",
   "license": "MIT",
   "dependencies": {
-    "@google-cloud/bigquery": "^1.0.0",
-    "await-to-js": "^2.0.1"
+    "@google-cloud/bigquery": "^1.3.0",
+    "await-to-js": "^2.1.1"
   }
 }
