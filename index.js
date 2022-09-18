@@ -1,4 +1,4 @@
-const BigQuery = require('@google-cloud/bigquery');
+const { BigQuery } = require('@google-cloud/bigquery');
 const to = require('await-to-js').default;
 
 const getTables = async ({ bigquery, datasetId, tables = [], _tables = [] }) => {
@@ -7,13 +7,13 @@ const getTables = async ({ bigquery, datasetId, tables = [], _tables = [] }) => 
 
   const dataset = bigquery.dataset(datasetId);
 
-  tables = [...tables, ..._tables.map(({id}) => ({ name: id }))];
+  tables = [...tables, ..._tables.map(({ id }) => ({ name: id }))];
 
   [err, tables] = await to(Promise.all(tables.map(async table => {
-    if (_tables.filter(({id}) => id == table.name).length) {
+    if (_tables.filter(({ id }) => id == table.name).length) {
       return await Promise.resolve({
         [table.name]: dataset
-                      .table(table.name)
+          .table(table.name)
       })
     } else {
       [err] = await to(dataset.createTable(table.name, table.options));
@@ -24,7 +24,7 @@ const getTables = async ({ bigquery, datasetId, tables = [], _tables = [] }) => 
 
       return await Promise.resolve({
         [table.name]: dataset
-                      .table(table.name)
+          .table(table.name)
       })
     }
 
@@ -43,7 +43,7 @@ const getTables = async ({ bigquery, datasetId, tables = [], _tables = [] }) => 
 
 const main = async (opts) => {
 
-  opts = opts || {};
+  opts = opts || {};
 
   for (let key of ['projectId', 'keyFilename', 'datasetId']) {
     if (!opts[key]) {
@@ -68,7 +68,7 @@ const main = async (opts) => {
 
   datasets = datasets[0];
 
-  if (datasets.filter(({id}) => id == datasetId).length) {
+  if (datasets.filter(({ id }) => id == datasetId).length) {
 
     [err, _tables] = await to(bigquery.dataset(datasetId).getTables());
 
@@ -76,7 +76,7 @@ const main = async (opts) => {
 
     if (!tables && !_tables.length) {
 
-      return await Promise.resolve({ bigquery, table: { } });
+      return await Promise.resolve({ bigquery, table: {} });
 
     } else {
 

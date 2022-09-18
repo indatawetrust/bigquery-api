@@ -6,6 +6,8 @@ A quick and easy to use package for Google Cloud BigQuery. bigquery-api requires
 npm i --save bigquery-api
 ```
 
+You can check this document to learn how to generate the service account key https://cloud.google.com/iam/docs/creating-managing-service-account-keys
+
 #### usage
 ```js
 const bigqueryapi = require('bigquery-api')
@@ -39,4 +41,4 @@ bigqueryapi({
 })
 ```
 
-For more information https://cloud.google.com/nodejs/docs/reference/bigquery/1.0.x/
+For more information https://cloud.google.com/nodejs/docs/reference/bigquery/latest
